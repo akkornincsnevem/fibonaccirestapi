@@ -83,5 +83,20 @@ class FibonacciServiceTest {
         assertEquals(HttpStatus.BAD_REQUEST, exception.status)
         assertEquals("n > 46 is not allowed", exception.reason)
     }
+
+    @Test
+    fun `should throw BAD_REQUEST for n = 100`() {
+        // Given
+        val n = 100
+
+        // When & Then
+        val exception = assertThrows(ResponseStatusException::class.java) {
+            underTest.fibonacci(n)
+        }
+
+        // Assert that the exception has the correct status code and message
+        assertEquals(HttpStatus.BAD_REQUEST, exception.status)
+        assertEquals("n > 46 is not allowed", exception.reason)
+    }
     // TODO - Test with greater numbers and test edge cases
 }
